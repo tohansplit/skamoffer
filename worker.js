@@ -47,6 +47,10 @@ async function handleUpdate(update, env) {
     }
 
     const offer = JSON.parse(raw);
+    if (Number(query.from?.id) !== Number(offer.seller_user_id)) {
+      await tg(env, "answerCallbackQuery", { callback_query_id: query.id, text: "Это предложение адресовано другому аккаунту", show_alert: true });
+      return;
+    }
     if (offer.status !== "pending") {
       await tg(env, "answerCallbackQuery", { callback_query_id: query.id, text: "Оффер уже обработан", show_alert: true });
       return;
