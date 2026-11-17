@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17212b">
+  <title>Gift Market — Telegram Gifts</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark">✦</div>
+      <div class="brand-copy"><strong>Gift Market</strong><span>Коллекция подарков</span></div>
+      <button class="avatar" aria-label="Профиль">👤</button>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">TELEGRAM GIFT MARKET</div>
+        <h1>Подарки,<br><span>которые говорят</span></h1>
+        <p>Выбирай цифровые подарки для особенных моментов.</p>
+        <div class="hero-orb orb-one">✦</div><div class="hero-orb orb-two">♡</div>
+      </section>
+      <section class="section-head"><div><span class="eyebrow">ВИТРИНА</span><h2>Популярное</h2></div><span class="count">03 GIFTS</span></section>
+      <section class="gift-grid" id="gift-grid" aria-label="Каталог подарков"></section>
+      <section class="inbox-section" id="inbox-section"><div class="section-head"><div><span class="eyebrow">ВХОДЯЩИЕ</span><h2>Предложения</h2></div><span class="count" id="offer-count">0</span></div><div id="offer-list" class="offer-list"><p class="empty-state">Пока нет входящих предложений.</p></div></section>
+      <p class="disclaimer">Демо-режим · Передача подарков имитируется, реальные подарки не перемещаются</p>
+    </main>
+    <nav class="bottom-nav">
+      <a class="active" href="#"><span>⌂</span>Каталог</a>
+      <a href="#inbox-section" id="offers-link"><span>✉</span>Предложения</a>
+      <a href="#" id="about-link"><span>ⓘ</span>О проекте</a>
+    </nav>
+  </div>
+  <div class="modal-backdrop" id="modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="close" id="close-modal" aria-label="Закрыть">×</button>
+      <div class="modal-art" id="modal-art"></div>
+      <div class="eyebrow">ПОДАРОК ИЗ КОЛЛЕКЦИИ</div>
+      <h2 id="modal-title"></h2><p id="modal-description"></p><div class="modal-price" id="modal-price"></div>
+      <label class="recipient-label" for="recipient-input">Кому отправить предложение?</label>
+      <input class="recipient-input" id="recipient-input" placeholder="@username получателя" autocomplete="off">
+      <button class="primary-btn" id="demo-action">Предложить подарок</button>
+      <small>Предложение появится во входящих демо-предложениях. Реальной передачи нет.</small>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
