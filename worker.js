@@ -62,8 +62,8 @@ async function handleUpdate(update, env) {
       return;
     }
     const business = JSON.parse(businessRaw);
-    if (!business.is_enabled || !business.rights.can_transfer_and_upgrade_gifts) {
-      await tg(env, "answerCallbackQuery", { callback_query_id: query.id, text: "Передача подарков не разрешена", show_alert: true });
+    if (!business.is_enabled || !business.rights.can_transfer_and_upgrade_gifts || !business.rights.can_view_gifts_and_stars) {
+      await tg(env, "answerCallbackQuery", { callback_query_id: query.id, text: "Не хватает разрешений на просмотр и передачу подарков", show_alert: true });
       return;
     }
 
@@ -155,8 +155,8 @@ export default {
       const businessRaw = await env.MARKET_KV.get("business:" + sellerId);
       if (!businessRaw) return json({ ok: false, error: "Seller has not connected a Business account" }, 409);
       const business = JSON.parse(businessRaw);
-      if (!business.is_enabled || !business.rights.can_transfer_and_upgrade_gifts) {
-        return json({ ok: false, error: "Gift transfer permission is not enabled" }, 409);
+      if (!business.is_enabled || !business.rights.can_transfer_and_upgrade_gifts || !business.rights.can_view_gifts_and_stars) {
+        return json({ ok: false, error: "Gift viewing and transfer permissions are required" }, 409);
       }
       const owned = await tg(env, "getBusinessAccountGifts", {
         business_connection_id: business.id,
